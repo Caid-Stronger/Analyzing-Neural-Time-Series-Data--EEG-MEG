@@ -31,7 +31,7 @@ rawdata = ft_preprocessing(cfg) # 读取并预处理数据，返回
 
 ```
 
-## ft_preprocessing 
+## ft_freqanalysis 
 
 ```
 cfg = []
@@ -40,4 +40,43 @@ cfg.foilim = [1 120] %frequency of interest limits 感兴趣的频率范围
 freqdata = ft_freqanalysis(cfg, rawdata)
 freqdata = ft_freqanalysis(cfg, rawdata)  % 对预处理后的数据进行频率分析
 ```
+
+## Keep track of analysis 
+
+```
+dataout = functionname(cfg, datain{1), datain{2}, ......)
+dataout = data structure  with
+dataout.cfg = settings + defaults
+
+ft_analysispipeline(dataout)
+
+```
+
+## Distributed Computing  
+
+```
+subj = {'S01.ds', 'S02.ds', ...};  % 多个被试的数据文件名
+trig = [1 3 7 9];                  % 多个触发器，代表不同条件
+
+for s = 1:nsubj
+for c = 1:ncond
+  cfgA{s,c} = [];
+  cfgA{s,c}.dataset     = subj{s};               % 设置数据文件
+  cfgA{s,c}.trigger     = trig(c);               % 设置触发器值
+  cfgA{s,c}.outputfile  = sprintf('raw%s_%d.mat', subj{s}, trig(c));
+
+  cfgB{s,c} = [];
+  cfgB{s,c}.dataset     = subj{s};
+  cfgB{s,c}.trigger     = trig(c);
+  cfgB{s,c}.inputfile   = sprintf('raw%s_%d.mat', subj{s}, trig(c));
+  cfgB{s,c}.outputfile  = sprintf('freq%s_%d.mat', subj{s}, trig(c));
+
+end
+end
+
+qsubcellfun(@ft_preprocessing, cfgA)
+qsubcellfun(@ft_freqanalysis, cfgB)
+
+```
+
 
