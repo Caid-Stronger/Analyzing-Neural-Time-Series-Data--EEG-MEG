@@ -78,5 +78,31 @@ qsubcellfun(@ft_preprocessing, cfgA)
 qsubcellfun(@ft_freqanalysis, cfgB)
 
 ```
+## ERP Analysis 
+
+![image](https://github.com/user-attachments/assets/5c5cc71b-b386-4a58-a423-06eebe0533dc) 
+
+`ft_definetrial` 定义试次，刺激前1s 刺激后2s <br>
+`ft_preprocessing` 读取数据并进行预处理 <br>
+`ft_timelockanalysis` 对其刺激时间点，计算平均ERP <br>
+`ft_timelockgrandaverage` 跨被试求平均 <br>
+`ft_timelockstatistics` 统计检验（条件差异）  <br>
+绘图可视化： `ft_multiplotER` `ft_singleplotER` `ft_topoplotER`  <br>
 
 
+## Frequency analysis and time-frequency analysis
+![image](https://github.com/user-attachments/assets/c045d53c-f2e2-4818-91df-9095ed5f5f13)
+
+
+## Beamformer source analysis
+![image](https://github.com/user-attachments/assets/e57e8bff-8128-430d-a63a-c526e9a86651)
+
+
+每位被试：
+
+`ft_sourceanalysis`
+`ft_sourceinterpolate`：将源图变为体素图像 <br>
+`ft_volumenormalise`：将个体标准化到模板脑（如 MNI） <br>
+`ft_sourcegrandaverage`：跨被试平均源图 <br>
+`ft_sourcestatistics`：统计检验（条件对比等） <br>
+`ft_sourceplot`：结果可视化 <br>
