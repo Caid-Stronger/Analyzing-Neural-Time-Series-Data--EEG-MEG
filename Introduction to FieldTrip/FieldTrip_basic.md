@@ -97,8 +97,8 @@ qsubcellfun(@ft_freqanalysis, cfgB)
 ## Beamformer source analysis
 ![image](https://github.com/user-attachments/assets/e57e8bff-8128-430d-a63a-c526e9a86651)
 
-
-每位被试：
+## Source reconstruction for multiple subjects
+![image](https://github.com/user-attachments/assets/6899c43d-f238-447c-932b-16dfa52c7c72)
 
 `ft_sourceanalysis`
 `ft_sourceinterpolate`：将源图变为体素图像 <br>
