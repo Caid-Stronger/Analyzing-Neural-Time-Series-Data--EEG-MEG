@@ -1,4 +1,5 @@
 ## What Produces the electric current? 
+![image](https://github.com/user-attachments/assets/10a893c9-243b-41a2-a449-d9776b731ed2)
 
 ![image](https://github.com/user-attachments/assets/bcb8715d-5c2e-481e-b456-54700d502984)
 
