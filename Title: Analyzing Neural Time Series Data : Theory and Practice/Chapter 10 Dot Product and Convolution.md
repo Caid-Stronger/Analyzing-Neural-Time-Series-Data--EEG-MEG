@@ -10,14 +10,14 @@ Convolution is performed by computing the dot product between two vectors, shift
 ![image](https://github.com/user-attachments/assets/2fe5a171-0f78-474c-bf22-46b237d7bd9c)
 
 ![image](https://github.com/user-attachments/assets/8b156246-df07-4733-b127-564e69c2b96b)
-![image](https://github.com/user-attachments/assets/25f1231f-f41f-47ec-83f8-32e79c578a54)
+
 
 The square wave is the signal, and the five-point linear decay function is the kernal. <br> 
 Taking the kernal,flipping it backward, and then dragging it forward in time so it passess over the signal.<br> 
 As it passess over the signal, it drags on the signal and the result of the drag is something looks a bit like each of them <br> 
 
 ![image](https://github.com/user-attachments/assets/9756e72d-40d3-4a6a-b94f-07d41e05bb23)
-
+![image](https://github.com/user-attachments/assets/25f1231f-f41f-47ec-83f8-32e79c578a54)
 If line up kernal and the data that have leftmost points overlapping and continue computing dot products until the kernal and the signal have their rightmost points overlapping, the results of the convolution contains  fewer points than the signal. <br> 
 
 In this case, zeros are added before the start of the signal. <br> 
