@@ -24,3 +24,18 @@ In this case, zeros are added before the start of the signal. <br>
 The result of convolution is one-hal of the length of the kernal too long in the beginning and one-half of the length of the kernal too long at the end. <br> 
 The result of the convolution will be  `length(signal)+length(kernal)-1` <br> 
 The dot product is placed in a position corresponding to the center of the kernal. <br>
+
+postconvolution scaling is not the same thing as mean-centering the kernal before convolution. <br> 
+the mean-centered kernel will produce a different convolution result because it will have negative numbers. <br> 
+
+![image](https://github.com/user-attachments/assets/cf1d2530-b06a-45cb-b003-7533fe35b95a)
+
+`a` and `b` are the two vectors <br> 
+*k* refers to the convolution at time point k <br>
+*i* corresponds to the elements in the equal-length parts of vectors `a` and `b` <br> 
+vector b is the kernal because it is flipped backward, which is the effect of `k-i` <br>
+![image](https://github.com/user-attachments/assets/82619c9c-6c73-428f-91c6-4f88715397a9)
+
+
+
+
