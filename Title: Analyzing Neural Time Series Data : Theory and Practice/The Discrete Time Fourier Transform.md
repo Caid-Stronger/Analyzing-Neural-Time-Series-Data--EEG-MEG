@@ -69,3 +69,19 @@ two ways of convolution:
 * flip the kernel backward, slide it along the signal, and compute the dot product at each time step. <br>
 * perform convolution is by taking the Fourier transforms of the signal and the kernal, multiplying the Fourier transform together point-by-point. <br>
   
+当你对卷积核和信号的傅里叶变换执行逐频率的相乘操作时，其实你是将信号的频率谱按核的频率谱进行缩放。相乘的结果（也就是卷积的结果）就是在核与信号中都共同存在的频率结构。 <br> 
+When you perform the frequency-by-frequency multiplication of the Fourier transforms of the kernal and the signal, you are scaling the frequency spectrum of the signal by the frequency spectrum of the kernal. <br> 
+the result of multiplication is the frequency structure that is common to both the kernel and the signal <br> 
+This is why convolution can be conceptualized as a frequency-domain filter. <br> 
+![image](https://github.com/user-attachments/assets/8c3c0fbc-2c37-45b8-9f7a-9eed8fa35ffc)
+
+![image](https://github.com/user-attachments/assets/38a571af-2f25-4548-a5b8-117085a3a3c3)
+
+sine wave is a 50Hz wave; and two Gaussian widths wave is 15Hz and 5 Hz. <br> 
+the power spectrum of the narrow Gaussian at 20 Hz overlap slightly with the power spectrum of singe wave; both are non-zero values. <br> 
+
+![image](https://github.com/user-attachments/assets/40fe502d-6602-4eb9-a3c8-9ac6f3220cc5)
+
+The result of convolution must be equal to the length of the signal plus the lengthof the kernel minus one. <br> 
+make the inverse FFT return the correct number of time points, and to do this, you will need to make sure to compute the FFTs of the signal and the kernel using the appropraite number of time points <br> 
+after computing the inverse Fourier transform, you will need to remove the appropriate number of time points from the beginning and from the end of the time series. <br> 
