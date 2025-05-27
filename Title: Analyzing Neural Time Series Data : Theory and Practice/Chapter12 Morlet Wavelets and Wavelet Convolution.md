@@ -20,4 +20,24 @@ a "box-car" window around the sine wave is also a poor choice, because it weight
 * ![image](https://github.com/user-attachments/assets/feac8df9-b0fc-42b6-9e1e-c23c0e54f500)
 
 * ## How to make wavelets
-* 
+
+* create a sine wave
+* create a Gaussian
+* multiply them point by point
+
+The frequence of a Morlet wavelet is called its **peak frequency** <br>
+
+The Gaussian Window:
+
+$$
+\text{GaussWin} = a e^{-\frac{(t - m)^2}{2s^2}} 
+$$
+
+$$
+s = \frac{n}{2\pi f}
+$$
+
+
+* a refers to amplitude, the height of Gaussian
+* t is time
+* m is an x-axis offset(this is not revelant for EEG analysis and can always be set to zero and thus left out of the eq
