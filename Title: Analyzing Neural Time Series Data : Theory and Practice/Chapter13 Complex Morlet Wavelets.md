@@ -135,8 +135,59 @@ when calculating large matrices, multiplying the complex vector by its conjugate
 In practice, if the sample rating is 500 Hz, you can use a maximum frequency of 125 Hz `four sample points per cycle` 
 
 ## How many frequency should we use 
+![image](https://github.com/user-attachments/assets/a8b217a5-8791-44e0-862d-dd21f1f55987)
 
 specify the peak frequencies of wavelets to increase linearly (5, 13, 22, 30 Hz) or logarithmically (5， 9， 16.5， 30 Hz)  <br> 
 
 if the main results concern lower-frequency activity, it is advisable to use logarithmic scaling  <br> 
 if the main results concern higher-frequency activity, it is advisable to use linear scaling  <br> 
+`imagesc(EEG.times, frequencies, tf_data)`
+Matlab function `image` will automaticallly scale y-axis in linear increments.<br> 
+if use logarithmic increments, please not enter the second input, leave it blank <br> 
+
+
+## How long should  wavelet be 
+![image](https://github.com/user-attachments/assets/fadd73e4-03b6-48c3-bb24-31ef044f7c81)
+make the wavelet centered in time  creating the wavelet using a time vector from a negative  to  a positive number. <br> 
+
+## How many cycles should be used for the Gaussian Taper 
+the number  of cycles of Gaussian taper defines its width, which in turn defines the width pf the wavelet. <br> 
+a larger number of cycles gives you better frequency precision at the cost of worse temporal precision <br> 
+a smaller number of cycles gives you better temporal precision at the cost of worse frequency precision <br> 
+`Heisenberg uncertainty principle` :the more you know about when something happened, the less you know about where it happened <br> 
+
+![image](https://github.com/user-attachments/assets/933c6ad9-5345-4cee-9ace-98560795375f)
+
+* three cycle wavelet is better suited for detecting transient activations and is more precise at localizing dynamics in time <br>
+* seven cycle wavelet is more sensitive to longer  activations ar specific frequencies; and is more precise at determining the frequency of dynamics <br>
+
+![image](https://github.com/user-attachments/assets/a32610ed-7814-4561-8f56-c09cbe36058c)
+13.14A shows the results of convolution with three-cycle wavelets, which maximaize the temporal precision. <br> There  seem to be two power increases, one at **390**ms, and one at **600ms**, that span a fairly broad lower frequency range, from around 3Hz to 12Hz. <br> 
+There seem to be several pulses of power suppression that span frequencies of 17Hz to 35Hz. <br>
+13.14B shows the  results of a vconvolution with the same EEG data and wavelets with the same peak frequencies, but this time with 10 cycles. <br> 
+these results highlight slightly different features of the same data. The two seperate low-frequency peaks have joined together, but it now can be seen that there are power increases in two distinct frequency bands, one in the theta range and one in the upper alpha range. <br> 
+The pulse of beta-band power suppression have congealed into a temporally sustained response. <br> 
+
+至少使用3个周期，最多不超过14个，如果使用7个周期及以上，注意确保wavelet 窗口的边缘已经到0 <br> 
+
+## FWHM (full width at half-maximun)
+
+the extent to which neighboring frequencies contribute to the result of wavelet convolution <br> 
+
+![image](https://github.com/user-attachments/assets/1b996138-d7b2-4f6c-92bf-a9c821a52228)
+
+FWHM 越大：<br>
+频率“模糊”越强；<br>
+说明小波“吃进了”更多邻近频率 → 频率精度差，但 时间定位更好。 <br>
+
+FWHM 越小： <br>
+频率定位更精确； <br>
+但小波持续时间会变长，时间分辨率降低。  <br>
+
+实际操作建议（更推荐）： <br>
+归一化小波的频谱响应（功率范围从 0 到 1）； <br>
+找出两侧（在主峰左右）功率刚好为 0.5 的两个频率点； <br>
+两点频率相减，就是 FWHM。 <br>
+![image](https://github.com/user-attachments/assets/b1e2ec7b-808a-4ac9-9cc6-81e92f772be1)
+![image](https://github.com/user-attachments/assets/5803fa1a-4615-4c25-b5c3-47a5bbcf4f30)
+
