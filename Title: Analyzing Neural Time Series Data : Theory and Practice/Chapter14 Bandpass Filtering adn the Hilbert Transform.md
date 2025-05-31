@@ -64,12 +64,16 @@ The frequency width of the bandpass filter and transition zones defind the trade
 sharp edges in the frequency domain can produce artifacts in the time domain. <br> 
 These artifacts take the form of ripples, which can look like oscillations in the time-domian-filtered signal. <br> 
 sharp edges can be avoided by using transition zones. <br> 
-If you use `firls`, the transition zones should be between 10% and 25% of the lower and upper frequency bounds.<br> 
+If you use `firls`, the transition zones should be **between 10% and 25%** of the lower and upper frequency bounds.<br> 
 sharper transition zones give a better frequenct response but increase the risk of introducing time-domain ringing artifacts; gentler transition zones decrease the risk of introducing time-domain ringing artifacts but also have less frequency specificity. <br> 
 If you are gonna use a transition zone of less than 10%, you should either smooth the filter kernel using a Hann or Hamming window to minimize edge artifacts when the filter is applied to EEG data. <br> 
 Also you can increase the order of the filter when using sharp transition zones because the filter kernels will have more time to taper to zero, reducing the edge articfacts. <br> 
 
-
-
 `fir1`:a windowed linear phase filter with tight transition zones <br>  
 
+`firls` allows you to defind your obw transition zones. <br> 
+`fir1` automatically set the trainsition zones to zero and then smoothes the resulting filter kernel to minimize ringing artifacts.This smoothing effectively creates a nonzero transition zone<br> 
+using `firls` with transition zones of zero and then smoothing the resulting filter kernel with `a Hamming window`, you can perfectly reconstruct the filter kernel created by `fir1` <br> 
+
+![image](https://github.com/user-attachments/assets/f7f18d19-4003-4378-bee1-206bfce5a559)
+![image](https://github.com/user-attachments/assets/dbdf3c1f-b4c4-4bae-9ba7-0659e6d0549e)
