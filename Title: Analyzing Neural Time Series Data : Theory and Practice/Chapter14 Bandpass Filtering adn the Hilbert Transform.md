@@ -1,3 +1,11 @@
+Summary
+![image](https://github.com/user-attachments/assets/f643c8b7-8814-43aa-b59c-6659ee884176)
+![image](https://github.com/user-attachments/assets/0de57f31-f7f9-42d5-90f8-c6cf017f3863)
+![image](https://github.com/user-attachments/assets/84666f20-3236-4741-814c-e336b65eb4d0)
+
+
+
+---
 ## Hilbert Transform 
 
 EEG data have the form *Mcos(2Πft)* <br> 
