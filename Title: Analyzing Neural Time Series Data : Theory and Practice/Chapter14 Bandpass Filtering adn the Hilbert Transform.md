@@ -114,3 +114,4 @@ filtfilt 的原理是：先用 filter 向前滤波，然后反转信号再向后
 ![image](https://github.com/user-attachments/assets/63bd5f50-dde4-4c62-84a2-98b7d481de6b)
 ![image](https://github.com/user-attachments/assets/3cab1fc2-e8e8-429e-b4be-219e004b11e3)
 ![image](https://github.com/user-attachments/assets/985b20d8-f3a3-4196-8630-082763c527ed)
+![image](https://github.com/user-attachments/assets/7a0ede66-68f6-4ec7-aae3-dc5de015a8bf)
