@@ -53,13 +53,14 @@ frequencies are specified as a fraction of the Nyquist frequency <br>
 `firls`: finite impulse response filters via least squares <br>
 * first input is `order parameter`, defines the length of the filter kernel(the length of kernel is the order plus one) determines the precision of the filter's frequency response. Larger orders will produce kernels with relatively better frequency precision.
 if you want to resolve activity ar a particular frequency, the filter kernel must be long enough to contain at lease one cycle at that frequency. <br>
-if the lower frequency bound is 10Hz, the filter kernel must be at least 100ms long. In practice, it is good to have somewhere between two and five times the lower frequency bound (between 200 and 500ms for a 10Hz filter) <br>
+if the lower frequency bound is 10Hz, the filter kernel must be at least 100ms long. In practice, it is good to have somewhere **between two and five times** the lower frequency bound (between 200 and 500ms for a 10Hz filter) <br>
 EEglab uses three times the lower frequency bound as the default order. The order may change as a function of the center frequency of the bandpass filter. In theory, the filter order must bu an even number to exclude a filter representation for the Nyquist frequency. <br>
 * the second input is `a vector of frequencies` that defines the shape of the response. For a bandpass filter, use six numbers: zero frequency, the frequency of the start of the lower  transition zone, the lower bound of the bandpass, the upper bound of the bandpass, the frequency of the end of the upper transition zone, and finally the Nyquist frequency. <br>
 * the third input is `ideal filter response amplitude`. This is a vector comprising as many numbers as the second input and contains zeros for the frequencies you want to attenuate and ones for the frequencies you want to keep. For a bandpass filter, you can use [0 0 1 1 0 0 ], where the ones correspond to the lower and upper frequency bounds of the bandpass plateau, the first and last zero correspond to the DC and Nyquist frequencies, the second and fifth zeros correspond to the frequency bounds of the transition zones. <br>
 The frequency width of the bandpass filter and transition zones defind the trade-off between temporal precision and frequency precision. <br> As the plateau becomes narrower, the frequency precision increase, but this decreases the temporal precision because narrow frequency filters require longer kernels to resolve. <br> 
 
 ![image](https://github.com/user-attachments/assets/65b2cef7-4f23-4254-ba12-07130ed4c406)
+![image](https://github.com/user-attachments/assets/b2ee9060-b0f4-451d-ab87-f942b389fb2c)
 
 sharp edges in the frequency domain can produce artifacts in the time domain. <br> 
 These artifacts take the form of ripples, which can look like oscillations in the time-domian-filtered signal. <br> 
@@ -77,3 +78,39 @@ using `firls` with transition zones of zero and then smoothing the resulting fil
 
 ![image](https://github.com/user-attachments/assets/f7f18d19-4003-4378-bee1-206bfce5a559)
 ![image](https://github.com/user-attachments/assets/dbdf3c1f-b4c4-4bae-9ba7-0659e6d0549e)
+
+
+## Check your FIlters 
+
+$$
+sse = \sum_{i=1}^{n} (ideal_i - actual_i)^2
+$$
+
+`sse` is the sum of squared errors <br> 
+`n` is the number of frequencies that were specified in the ideal filter <br> 
+`ideal` and `actual` refer to the power spectra of the ideal filter (the third input to the firls function) <br> 
+**sse** should be very close to zero. <br> 
+
+![image](https://github.com/user-attachments/assets/c5d64730-1987-4c8e-9312-b5b6549bbb58) 
+
+## Apply the filter to data 
+
+`firls` returna a vector of length N+1, where  N is the order. <br> 
+You can use Matlab function `filtfilt`:the inputs are: 
+* filter kernel (the output of firls)
+* a scalar or vector of weighting coefficients,can be set to 1.0 
+* and the data time series.
+* output is the filtered data
+
+![image](https://github.com/user-attachments/assets/51b52d00-4cc8-4f1a-8410-3eaa7dca82ce)
+
+![image](https://github.com/user-attachments/assets/adb8cb4d-8db6-4b38-b191-8ba781133407)
+these phase delays can be reversed by refiltering the already-filtered data after reversing the filtered data in time. <br> 
+filtfilt 的原理是：先用 filter 向前滤波，然后反转信号再向后滤波，从而消除了相位延迟，得到最终没有相位延迟的结果<br> 
+
+## Butterworth Filter 
+![image](https://github.com/user-attachments/assets/94f41720-e57f-4304-b31c-96c8ceaf130c)
+
+![image](https://github.com/user-attachments/assets/63bd5f50-dde4-4c62-84a2-98b7d481de6b)
+![image](https://github.com/user-attachments/assets/3cab1fc2-e8e8-429e-b4be-219e004b11e3)
+![image](https://github.com/user-attachments/assets/985b20d8-f3a3-4196-8630-082763c527ed)
