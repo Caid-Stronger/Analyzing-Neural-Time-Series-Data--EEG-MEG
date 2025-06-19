@@ -5,9 +5,9 @@
 
 
 # EEG/MEG Analysis with FieldTrip  
-Reproducing tutorials from *Analyzing Neural Time Series Data: Theory and Practice*
+Reproducing tutorials from ***Analyzing Neural Time Series Data: Theory and Practice***
 
-This repository contains MATLAB scripts and configuration files for reproducing EEG and MEG analyses using the FieldTrip toolbox. It is organized around key topics introduced in the book *Analyzing Neural Time Series Data* and integrates FieldTrip's official tutorial structure.
+This repository contains MATLAB scripts and configuration files for EEG and MEG analyses using the ***FieldTrip toolbox***. 
 
 ---
 
