@@ -12,7 +12,7 @@ for trialsel=1:10
     title(sprintf('trial %d', trialsel)); 
 end 
 
-%% trial definition 
+%% trial definition
 cfg = [] 
 cfg.dataset = 'D:\MatlabCode\FieldTripdata\Subject01\Subject01.ds'  
 cfg.trialfun = 'ft_trialfun_general' 
