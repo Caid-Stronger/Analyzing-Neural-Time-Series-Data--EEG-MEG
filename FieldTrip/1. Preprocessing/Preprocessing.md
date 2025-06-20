@@ -13,3 +13,31 @@ e.g., `De klimmers bereikten eindelijk de top van de tulp (The climbers finally 
 
 The third type of sentences ended with a semantically anomalous word that had the same initial phonemes (and lexical stress) as the high-cloze words from the congruent condition: initially congruent (IC). 
 
+# Dealing with Artifacts 
+
+## How does FieldTrip manage artifacts? 
+* rejecting the piece of data containing the artifact <br>
+for a short-lived artifact or poorly attached EEG electrode
+* subtracting the spation-temporal contribution of the artifact from the data <br>
+  using ICA <br>
+  
+## visual artifact detection 
+
+* ft_rejectvisual : only for segmented data that have already been read into memory <br>
+`all channel at once ` <br>
+`all trials at once `<br>
+`a summary of all channels and trials `<br>
+ Using the mouse, you can select trials and/or channels that should be removed from the data. <br>
+* ft_databrowser: both for continuous and segmented data <br>
+  after detecting the time-segments with the artifacts, call  `ft_rejectartifact` to remove them from data <br>
+
+## Procedure 
+
+* Read the data into MATLAB using `ft_definetrial` and `ft_preprocessing`
+* Visual inspection of the trials and rejection of artifacts using `ft_rejectvisual`
+* 
+
+  
+  
+
+  
