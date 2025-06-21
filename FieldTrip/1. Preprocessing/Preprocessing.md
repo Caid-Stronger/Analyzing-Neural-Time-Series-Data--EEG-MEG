@@ -35,7 +35,9 @@ for a short-lived artifact or poorly attached EEG electrode
 
 * Read the data into MATLAB using `ft_definetrial` and `ft_preprocessing`
 * Visual inspection of the trials and rejection of artifacts using `ft_rejectvisual`
-* 
+* Alternatively you can use ft_databrowser and mark the artifacts manually by interactively paging trial by trial
+
+
 
   
   
