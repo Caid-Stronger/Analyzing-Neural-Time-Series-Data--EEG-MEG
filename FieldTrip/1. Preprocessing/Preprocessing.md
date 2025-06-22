@@ -37,7 +37,15 @@ for a short-lived artifact or poorly attached EEG electrode
 * Visual inspection of the trials and rejection of artifacts using `ft_rejectvisual`
 * Alternatively you can use ft_databrowser and mark the artifacts manually by interactively paging trial by trial
 
-
+# Automatic Artifact Rejection 
+1. Defining segments of interest using `ft_definetrial`
+2. Detecing artifacts using `ft_artifact_zvalue`, which consists of
+    `Reading the data (with padding) from disk` <br>
+    `Filtering the data` <br>
+    `Z-transforming the filtered data and averaging it over channels`
+    `Threshold the accumulated z-score`
+   
+   
 
   
   
