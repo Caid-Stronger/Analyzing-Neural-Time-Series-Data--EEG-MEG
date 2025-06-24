@@ -146,3 +146,21 @@ In this example data set, a lot of data points are detected to be a ‘jump’ a
 ![image](https://github.com/user-attachments/assets/a29d1b49-c8cc-4084-bcc5-552ba1436418)
 
 ![image](https://github.com/user-attachments/assets/9a5dd003-2619-4b09-90db-b7335f01081b)
+
+
+## Cleaning artifacts using ICA 
+Independent component analysis (ICA) is a spatio-temporal decomposition strategy that assumes that the underlying sources of the EEG or MEG have a stationary spatial projection to the channels, and are temporally maximally independent. <br> 
+the ICA decomposition will only be an approximation of the most visible independent components. <br> 
+Following the ICA decomposition we can identify the artifactual components, and backproject all other components to the channel level, excluding the artifacts. <br> 
+For efficiency reasons we often do the preprocessing by first identifying the trials of interest and only reading those into memory. However, it might be that certain stereotypical artifacts are more frequent in the inter-trial intervals,for example when the subject was not required to maintain fixation and was more likely to blink or make saccades. Including these inter-trial intervals can therefore contribute to the identification of the eye-related components. <br> 
+
+### Procedure 
+
+1. Read the data with minimal prerpocessing using `ft_preprocessing`
+2. remove segmtn with infrequent atypical artifacts using wither `ft_rejectvisual` or `ft_databrowser`
+3. ICA decomposition of the data using `ft_componentanalysis`
+4. identifying the component that reflect eye and heart artifact using `ft_topoplotIC`
+5. removing those components and backprojecting the data using `ft_rejectcomponent`
+![image](https://github.com/user-attachments/assets/92f8bd0e-f5dc-4382-b834-39c1b20dabb3)
+
+
