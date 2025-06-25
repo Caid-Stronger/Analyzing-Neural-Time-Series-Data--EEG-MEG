@@ -163,4 +163,6 @@ For efficiency reasons we often do the preprocessing by first identifying the tr
 5. removing those components and backprojecting the data using `ft_rejectcomponent`
 ![image](https://github.com/user-attachments/assets/92f8bd0e-f5dc-4382-b834-39c1b20dabb3)
 
+ICA assumes a mixing of stationary components and cannot estimate more components than the number of channels. If you have a few infrequenct and atypical artifacts, these will be represented in components. <br> 
+
 
